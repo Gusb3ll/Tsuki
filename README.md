@@ -18,7 +18,7 @@
 ### [model](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
 
 
-## Download and put these files in Hent folder
+## Download and put these files in HentAI folder
 
 ### [4x_FatalPixels_340000_G.pth](https://de-next.owncube.com/index.php/s/mDGmi7NgdyyQRXL)
 
@@ -26,7 +26,7 @@
 
 ### [PyTourch for python 3.5 (Windows)](http://download.pytorch.org/whl/cu92/torch-0.4.1-cp35-cp35m-win_amd64.whl)
 
-### [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) - put this in hent/ColabESRGAN/models folder
+### [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) - put this in HentAI/ColabESRGAN/models folder
 
 ## Init DeepCreamPy
 
@@ -37,10 +37,10 @@ virtualenv env --python=3.9
 pip install -r requirements.txt
 ```
 
-## Init Hent
+## Init HentAI
 
 ```
-cd hent
+cd HentAI
 virtualenv env --python=3.5.2
 .\env\scripts\activate
 pip install torch-0.4.1-cp35-cp35m-win_amd64
