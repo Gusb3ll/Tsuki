@@ -21,16 +21,16 @@ cd convert
 
 cd ..
 
-move .\convert\output\*.png .\hent\input\
+move .\convert\output\*.png .\HentAI\input\
 echo y | del .\convert\input\*
 
-cd hent
+cd HentAI
 .\env\Scripts\python.exe .\main.py
 
 cd ..
 
-move .\hent\output\decensor_input\*.png .\DeepCreamPy\decensor_input\
-echo y | del .\hent\input\*
+move .\HentAI\output\decensor_input\*.png .\DeepCreamPy\decensor_input\
+echo y | del .\HentAI\input\*
 
 cd DeepCreamPy
 .\env\Scripts\python.exe .\decensor.py

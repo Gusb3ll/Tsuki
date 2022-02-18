@@ -7,6 +7,6 @@ mkdir .\convert\output
 mkdir .\DeepCreamPy\decensor_input
 mkdir .\DeepCreamPy\decensor_output
 
-mkdir .\hent\input
-mkdir .\hent\output\
-mkdir .\hent\output\decensor_input
+mkdir .\HentAI\input
+mkdir .\HentAI\output\
+mkdir .\HentAI\output\decensor_input
