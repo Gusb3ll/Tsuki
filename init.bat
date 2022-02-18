@@ -1,8 +1,8 @@
 mkdir .\INPUT
 mkdir .\OUTPUT
 
-mkdir .\convert\input
-mkdir .\convert\output
+mkdir .\Convert\input
+mkdir .\Convert\output
 
 mkdir .\DeepCreamPy\decensor_input
 mkdir .\DeepCreamPy\decensor_output
