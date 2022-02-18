@@ -4,6 +4,9 @@ mkdir .\OUTPUT
 mkdir .\Convert\input
 mkdir .\Convert\output
 
+mkdir .\ToneRemover\input
+mkdir .\ToneRemover\output
+
 mkdir .\DeepCreamPy\decensor_input
 mkdir .\DeepCreamPy\decensor_output
 

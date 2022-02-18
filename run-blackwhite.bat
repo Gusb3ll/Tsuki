@@ -12,7 +12,7 @@ echo.
 echo.
 echo.
 
-echo y  | del .\OUTPUT\*
+echo y | del .\OUTPUT\*
 
 move .\INPUT\* .\convert\input\ 
 
@@ -21,8 +21,16 @@ cd convert
 
 cd ..
 
-move .\convert\output\*.png .\HentAI\input\
+move .\convert\output\*.png .\ToneRemover\input\
 echo y | del .\convert\input\*
+
+cd ToneRemover
+.\env\Scripts\python.exe .\main.py
+
+cd ..
+
+move .\ToneRemover\output\*.png .\HentAI\input\
+echo y | del .\ToneRemover\input\*
 
 cd HentAI
 .\env\Scripts\python.exe .\main.py
