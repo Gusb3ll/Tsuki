@@ -1,13 +1,15 @@
-# YOU NEED CUDA >= 9.0 < 10 AND CUDNN >= 7.0 < 8 TO USE THIS
+# TSUKIUNCEN
+
+### YOU NEED CUDA >= 9.0 < 10 AND CUDNN >= 7.0 < 8 TO USE THIS
 
 CUDA(https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exenetwork)
 CUDNN(https://developer.nvidia.com/rdp/cudnn-archive)
 
 ## Python environment for each module
 
-## Convert : >= 3.9 < 3.10
-## download : >= 3.9 < 3.10
-## DeepCreamPy : >= 3.9 < 3.10
+### Convert : >= 3.9 < 3.10
+### download : >= 3.9 < 3.10
+### DeepCreamPy : >= 3.9 < 3.10
 ## Hent : 3.5.2 ONLY
 
 ## Download and put these files in DeepCreamPy folder
