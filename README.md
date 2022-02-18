@@ -43,10 +43,9 @@ pip install -r requirements.txt
 cd HentAI
 virtualenv env --python=3.5.2
 .\env\scripts\activate
-pip install torch-0.4.1-cp35-cp35m-win_amd64
 pip install -r requirements-gpu.txt
-pip install ffmpeg
-python setup.py install
+
+# Ignore any invaild syntax error
 ```
 
 ## Usage

@@ -1,1 +1,5 @@
 __pycache__/*
+libs/__pycache__/*
+
+decensor_input/*
+decensor_output/*
