@@ -83,13 +83,13 @@ pip install -r requirements.txt
 The scripts will create "INPUT" and "OUTPUT" folder for each modules to use
 
 ### For black & white manga
-First put the manga images in "INPUT" folder
+Put the manga images in "INPUT" folder (Both PNG & JPG are acceptacble)
 ```
 .\run-blackwhite.bat
 ```
 
 ### For colored manga
-First put the manga images in "INPUT" folder
+Put the manga images in "INPUT" folder (Both PNG & JPG are acceptacble)
 ```
 .\run-color.bat
 ```
