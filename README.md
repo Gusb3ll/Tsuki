@@ -15,6 +15,8 @@
 - Python 3.9.7
 - Python 3.5.2 (Used for HentAI) <- Reworking to work with python 3.9
 
+If you have cuda 10 or 11 install, install cuda 9 and set the system variable "CUDA_PATH" to your CUDA 9.0 Path
+
 ## Install the requirements for each module
 
 ### Converter
