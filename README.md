@@ -1,4 +1,5 @@
-![Tsuki](https://user-images.githubusercontent.com/77166960/154808759-ae65bbf7-9248-43ba-a259-098e932de0cb.png)
+![Tsuki](https://user-images.githubusercontent.com/77166960/154808873-1bdd3aab-1aa4-4fcd-a3e6-17dfcde3b720.png)
+
 
 ### Manga uncensoring script based on
 - [DeepCreamPy](https://github.com/liaoxiong3x/DeepCreamPy)
