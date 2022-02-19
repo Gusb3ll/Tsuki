@@ -12,11 +12,11 @@
 
 - CUDA Compatible GPU
 - [CUDA 9.0](https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exenetwork)
-- [CUDNN 7.6.5](https://developer.nvidia.com/rdp/cudnn-archive)
+- [CUDNN 7.6.5 For CUDA 9.0](https://developer.nvidia.com/rdp/cudnn-archive)
 - Python 3.9.7
 - Python 3.5.2 (Used for HentAI) <- Reworking to work with python 3.9
 
-If you have cuda 10 or 11 install, install cuda 9 and set the system variable "CUDA_PATH" to your CUDA 9.0 Path
+If you have CUDA >=10 installed, install CUDA 9.0 and set the system variable "CUDA_PATH" to your CUDA 9.0 Path
 
 ## Install the requirements for each module
 
