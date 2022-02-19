@@ -1,4 +1,4 @@
-# Tsukiuncen
+# Tsuki
 
 ### Manga uncensoring script based on
 - [DeepCreamPy](https://github.com/liaoxiong3x/DeepCreamPy)
