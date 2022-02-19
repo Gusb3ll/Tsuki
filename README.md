@@ -64,7 +64,7 @@ pip install -r requirements.txt
 
 ### DeepCreamPy
   - [Models.zip](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
-    - Extract the file then put in DeepCreamPy/models folder
+    - Extract the file then put it in DeepCreamPy/models folder
 
 ### HentAI
   - [4x_FatalPixels_340000_G.pth](https://de-next.owncube.com/index.php/s/mDGmi7NgdyyQRXL)
@@ -83,13 +83,13 @@ pip install -r requirements.txt
 The scripts will create "INPUT" and "OUTPUT" folder for each modules to use
 
 ### For black & white manga
-Put the manga images in "INPUT" folder (Both PNG & JPG are acceptacble)
+Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-blackwhite.bat
 ```
 
 ### For colored manga
-Put the manga images in "INPUT" folder (Both PNG & JPG are acceptacble)
+Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-color.bat
 ```
