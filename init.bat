@@ -1,15 +1,15 @@
 mkdir .\INPUT
 mkdir .\OUTPUT
 
-mkdir .\Convert\input
-mkdir .\Convert\output
+mkdir .\modules\Convert\input
+mkdir .\modules\Convert\output
 
-mkdir .\ToneRemover\input
-mkdir .\ToneRemover\output
+mkdir .\modules\ToneRemover\input
+mkdir .\modules\ToneRemover\output
 
-mkdir .\DeepCreamPy\decensor_input
-mkdir .\DeepCreamPy\decensor_output
+mkdir .\modules\DeepCreamPy\decensor_input
+mkdir .\modules\DeepCreamPy\decensor_output
 
-mkdir .\HentAI\input
-mkdir .\HentAI\output\
-mkdir .\HentAI\output\decensor_input
+mkdir .\modules\HentAI\input
+mkdir .\modules\HentAI\output\
+mkdir .\modules\HentAI\output\decensor_input

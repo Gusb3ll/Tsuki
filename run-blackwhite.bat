@@ -14,7 +14,9 @@ echo.
 
 echo y | del .\OUTPUT\*
 
-move .\INPUT\* .\convert\input\ 
+move .\INPUT\* .\modules\convert\input\ 
+
+cd modules
 
 cd convert
 .\env\Scripts\python.exe .\JPG_to_PNG_converter.py
@@ -44,6 +46,7 @@ cd DeepCreamPy
 .\env\Scripts\python.exe .\decensor.py
 
 cd ..
+cd ..
 
-move .\DeepCreamPy\decensor_output\*.png .\OUTPUT
-echo y | del .\DeepCreamPy\decensor_input\*
+move .\modules\DeepCreamPy\decensor_output\*.png .\OUTPUT
+echo y | del .\modules\DeepCreamPy\decensor_input\*
