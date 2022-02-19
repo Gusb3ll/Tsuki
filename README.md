@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ### HentAI
   - You need to download pytorch 0.4.1 wheel and put it in the HentAI folder first
   - Download it [here](https://download.pytorch.org/whl/cpu/torch-0.4.1-cp35-cp35m-win_amd64.whl)
-after that run
+#### after that run
 ```bash
 cd tsukiuncen
 cd modules
