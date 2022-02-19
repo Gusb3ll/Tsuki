@@ -1,54 +1,92 @@
-# TSUKIUNCEN
+# Tsukiuncen
 
-### YOU NEED CUDA >= 9.0 < 10 AND CUDNN >= 7.0 < 8 TO USE THIS
+### Manga uncensoring script based on
+- [DeepCreamPy](https://github.com/liaoxiong3x/DeepCreamPy)
+- [HentAI](https://github.com/natethegreate/hent-AI)
+- [ToneRemover](https://github.com/natethegreate/Screentone-Remover) (For non-colored manga)
 
-[CUDA](https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exenetwork)
+# Installiation
 
-[CUDNN](https://developer.nvidia.com/rdp/cudnn-archive)
+### System requirements
 
-## Python environment for each module
+- CUDA Compatible GPU
+- [CUDA 9.0](https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exenetwork)
+- [CUDNN 7.6.5](https://developer.nvidia.com/rdp/cudnn-archive)
+- Python 3.9.7
+- Python 3.5.2 (Used for HentAI) <- Reworking to work with python 3.9
 
-### Convert : >= 3.9 < 3.10
-### download : >= 3.9 < 3.10
-### DeepCreamPy : >= 3.9 < 3.10
-### Hent : 3.5.2 ONLY
+## Install the requirements for each module
 
-## Download and put these files in DeepCreamPy models folder
-
-### [model](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
-
-
-## Download and put these files in HentAI folder
-
-### [4x_FatalPixels_340000_G.pth](https://de-next.owncube.com/index.php/s/mDGmi7NgdyyQRXL)
-
-### [Weights.h5](https://www.dropbox.com/s/zvf6vbx3hnm9r31/weights268.zip?dl=0)
-
-### [PyTourch for python 3.5 (Windows)](http://download.pytorch.org/whl/cu92/torch-0.4.1-cp35-cp35m-win_amd64.whl)
-
-### [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) - put this in HentAI/ColabESRGAN/models folder
-
-## Init DeepCreamPy
-
-```
-cd DeepCreamPy
-virtualenv env --python=3.9
-.\env\scripts\activate
+### Converter
+```bash
+cd tsukiuncen
+cd modules
+cd convert
+virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
 
-## Init HentAI
-
+### DeepCreamPy
+```bash
+cd tsukiuncen
+cd modules
+cd DeepCreamPy
+virtualenv env --python=3.9.7
+pip install -r requirements.txt
 ```
+
+### HentAI
+  - You need to download pytorch 0.4.1 wheel and put it in the HentAI folder first
+  - Download it [here](https://download.pytorch.org/whl/cpu/torch-0.4.1-cp35-cp35m-win_amd64.whl)
+after that run
+```bash
+cd tsukiuncen
+cd modules
 cd HentAI
 virtualenv env --python=3.5.2
-.\env\scripts\activate
-pip install -r requirements-gpu.txt
+pip install -r requirements.txt
+```
+Ignore any invaild syntax error
 
-# Ignore any invaild syntax error
+### ToneRemover
+```bash
+cd tsukiuncen
+cd modules
+cd ToneRemover
+virtualenv env --python=3.9.7
+pip install -r requirements.txt
 ```
 
-## Usage
+## Download the required models
 
-### Run init.bat for once and run.bat everytime you wish to use it
-### Always put censored pictures in "INPUT" folder
+### DeepCreamPy
+  - [Models.zip](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
+    - Extract the file then put in DeepCreamPy/models folder
+
+### HentAI
+  - [4x_FatalPixels_340000_G.pth](https://de-next.owncube.com/index.php/s/mDGmi7NgdyyQRXL)
+  - [Weights.h5](https://www.dropbox.com/s/zvf6vbx3hnm9r31/weights268.zip?dl=0)
+    - Put these two files in HentAI folder
+  - [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) 
+    - Put this in HentAI/ColabESRGAN/models folder
+
+# Usage
+
+### First time running the scripts
+
+```
+.\init.bat
+```
+The scripts will create "INPUT" and "OUTPUT" folder for each modules to use
+
+### For black & white manga
+First put the manga images in "INPUT" folder
+```
+.\run-blackwhite.bat
+```
+
+### For colored manga
+First put the manga images in "INPUT" folder
+```
+.\run-color.bat
+```
