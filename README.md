@@ -19,9 +19,17 @@ If you have others CUDA versions installed, make sure you set the system variabl
 
 ## Install the requirements for each module
 
+## Automatic installation
+
+```bash
+.\init.bat
+```
+
+## Manual installation (Not recommended)
+
 ### Converter
 ```bash
-cd tsukiu
+cd tsuki
 cd modules
 cd convert
 virtualenv env --python=3.9.7
@@ -38,9 +46,6 @@ pip install -r requirements.txt
 ```
 
 ### HentAI
-  - You need to download pytorch 0.4.1 wheel and put it in the HentAI folder first
-  - Download it [here](https://download.pytorch.org/whl/cpu/torch-0.4.1-cp35-cp35m-win_amd64.whl)
-#### after that run
 ```bash
 cd tsuki
 cd modules
@@ -73,12 +78,7 @@ pip install -r requirements.txt
 
 # Usage
 
-### First time running the scripts
-
-```
-.\init.bat
-```
-The scripts will create "INPUT" and "OUTPUT" folder for each modules to use
+If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder that got created at the root
 
 ### For black & white manga
 Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
