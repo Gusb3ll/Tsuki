@@ -11,13 +11,11 @@
 ### System requirements
 
 - CUDA Compatible GPU
-- [CUDA (latest version) (current working one is 11.5)](https://developer.nvidia.com/cuda-downloads)
-- [CUDNN (latest version compatible with CUDA) (current working one is 8.3.2)](https://developer.nvidia.com/rdp/cudnn-download)
+- [CUDA](https://developer.nvidia.com/cuda-downloads) (latest version) (current working one is 11.5)
+- [CUDNN](https://developer.nvidia.com/rdp/cudnn-download) (latest version compatible with CUDA) (current working one is 8.3.2)
 - Python 3.9.7
 
 If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
-
-## Install the requirements for each module
 
 ## Automatic installation
 
@@ -63,7 +61,7 @@ virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
 
-## Download the required models
+## Download the models
 
 ### DeepCreamPy
   - [Models.zip](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
@@ -78,7 +76,7 @@ pip install -r requirements.txt
 
 # Usage
 
-If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder that got created at the root
+If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at the root of the project
 
 ### For black & white manga
 Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
