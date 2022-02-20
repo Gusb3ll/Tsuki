@@ -1,15 +1,13 @@
 # Feb 2020 - Nathan Cueto
 # Main function for UI and uses Detector class
 import warnings
-
 warnings.filterwarnings('ignore')
+
 import sys
 import os
-from os import listdir
+from os import listdir, system
 from tkinter import *
-# from tkinter import Label, Entry, Button, Tk, StringVar, TOP, X, Toplevel
-# from tkinter import ttk
-# from matplotlib import pyplot as pltcd 
+import subprocess
 from tkinter import filedialog
 import configparser
 import shutil

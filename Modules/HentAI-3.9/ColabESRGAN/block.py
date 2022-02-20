@@ -1,11 +1,10 @@
-from collections import OrderedDict
 import torch
 import torch.nn as nn
+from collections import OrderedDict
 
 ####################
 # Basic blocks
 ####################
-
 
 def act(act_type, inplace=True, neg_slope=0.2, n_prelu=1):
     # helper selecting activation
@@ -22,7 +21,6 @@ def act(act_type, inplace=True, neg_slope=0.2, n_prelu=1):
         raise NotImplementedError('activation layer [%s] is not found' % act_type)
     return layer
 
-
 def norm(norm_type, nc):
     # helper selecting normalization layer
     norm_type = norm_type.lower()
@@ -33,7 +31,6 @@ def norm(norm_type, nc):
     else:
         raise NotImplementedError('normalization layer [%s] is not found' % norm_type)
     return layer
-
 
 def pad(pad_type, padding):
     # helper selecting padding layer
@@ -49,12 +46,10 @@ def pad(pad_type, padding):
         raise NotImplementedError('padding layer [%s] is not implemented' % pad_type)
     return layer
 
-
 def get_valid_padding(kernel_size, dilation):
     kernel_size = kernel_size + (kernel_size - 1) * (dilation - 1)
     padding = (kernel_size - 1) // 2
     return padding
-
 
 class ConcatBlock(nn.Module):
     # Concat the output of a submodule to its input
@@ -72,7 +67,6 @@ class ConcatBlock(nn.Module):
         tmpstr = tmpstr + modstr
         return tmpstr
 
-
 class ShortcutBlock(nn.Module):
     #Elementwise sum the output of a submodule to its input
     def __init__(self, submodule):
@@ -89,7 +83,6 @@ class ShortcutBlock(nn.Module):
         tmpstr = tmpstr + modstr
         return tmpstr
 
-
 def sequential(*args):
     # Flatten Sequential. It unwraps nn.Sequential.
     if len(args) == 1:
@@ -105,9 +98,7 @@ def sequential(*args):
             modules.append(module)
     return nn.Sequential(*modules)
 
-
-def conv_block(in_nc, out_nc, kernel_size, stride=1, dilation=1, groups=1, bias=True,
-               pad_type='zero', norm_type=None, act_type='relu', mode='CNA'):
+def conv_block(in_nc, out_nc, kernel_size, stride=1, dilation=1, groups=1, bias=True, pad_type='zero', norm_type=None, act_type='relu', mode='CNA'):
     """
     Conv layer with padding, normalization, activation
     mode: CNA --> Conv -> Norm -> Act
@@ -127,18 +118,12 @@ def conv_block(in_nc, out_nc, kernel_size, stride=1, dilation=1, groups=1, bias=
     elif mode == 'NAC':
         if norm_type is None and act_type is not None:
             a = act(act_type, inplace=False)
-            # Important!
-            # input----ReLU(inplace)----Conv--+----output
-            #        |________________________|
-            # inplace ReLU will modify the input, therefore wrong output
         n = norm(norm_type, in_nc) if norm_type else None
         return sequential(n, a, p, c)
-
 
 ####################
 # Useful blocks
 ####################
-
 
 class ResNetBlock(nn.Module):
     """
@@ -171,7 +156,6 @@ class ResNetBlock(nn.Module):
     def forward(self, x):
         res = self.res(x).mul(self.res_scale)
         return x + res
-
 
 class ResidualDenseBlock_5C(nn.Module):
     """
@@ -207,7 +191,6 @@ class ResidualDenseBlock_5C(nn.Module):
         x5 = self.conv5(torch.cat((x, x1, x2, x3, x4), 1))
         return x5.mul(0.2) + x
 
-
 class RRDB(nn.Module):
     """
     Residual in Residual Dense Block
@@ -229,11 +212,9 @@ class RRDB(nn.Module):
         out = self.RDB3(out)
         return out.mul(0.2) + x
 
-
 ####################
 # Upsampler
 ####################
-
 
 def pixelshuffle_block(in_nc, out_nc, upscale_factor=2, kernel_size=3, stride=1, bias=True,
                         pad_type='zero', norm_type=None, act_type='relu'):
@@ -249,7 +230,6 @@ def pixelshuffle_block(in_nc, out_nc, upscale_factor=2, kernel_size=3, stride=1,
     n = norm(norm_type, out_nc) if norm_type else None
     a = act(act_type) if act_type else None
     return sequential(conv, pixel_shuffle, n, a)
-
 
 def upconv_blcok(in_nc, out_nc, upscale_factor=2, kernel_size=3, stride=1, bias=True,
                 pad_type='zero', norm_type=None, act_type='relu', mode='nearest'):

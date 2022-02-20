@@ -12,7 +12,7 @@ net_PSNR = torch.load(net_PSNR_path)
 net_ESRGAN = torch.load(net_ESRGAN_path)
 net_interp = OrderedDict()
 
-print('Interpolating with alpha = ', alpha)
+print(f'Interpolating with alpha {alpha}')
 
 for k, v_PSNR in net_PSNR.items():
     v_ESRGAN = net_ESRGAN[k]

@@ -1,5 +1,4 @@
 import math
-import torch
 import torch.nn as nn
 import block as B
 
@@ -22,7 +21,7 @@ class RRDB_Net(nn.Module):
         elif upsample_mode == 'pixelshuffle':
             upsample_block = B.pixelshuffle_block
         else:
-            raise NotImplementedError('upsample mode [%s] is not found' % upsample_mode)
+            raise NotImplementedError(f'Upsample mode {upsample_mode} is not found')
         if upscale == 3:
             upsampler = upsample_block(nf, nf, 3, act_type=act_type)
         else:
