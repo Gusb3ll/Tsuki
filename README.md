@@ -6,6 +6,8 @@
 - [HentAI](https://github.com/natethegreate/hent-AI)
 - [ToneRemover](https://github.com/natethegreate/Screentone-Remover) (For non-colored manga)
 
+![Demo](https://cdn.discordapp.com/attachments/858334807561863221/944618448540033064/test-output.png)
+
 # Installiation
 
 ### System requirements
@@ -97,6 +99,3 @@ Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
 
 # After HentAI UI popup select "bar" and press "go"
 ```
-
-# Demo
-![Demo](https://cdn.discordapp.com/attachments/858334807561863221/944618448540033064/test-output.png)
