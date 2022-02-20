@@ -9,7 +9,7 @@ import numpy as np
 from tkinter import *
 # from tkinter import ttk
 # from matplotlib import pyplot as plt
-from tkinter import filedialog3
+from tkinter import filedialog
 from os import listdir
 
 from cmyui import log, Ansi
