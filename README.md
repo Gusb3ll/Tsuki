@@ -11,12 +11,11 @@
 ### System requirements
 
 - CUDA Compatible GPU
-- [CUDA 9.0](https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exenetwork)
-- [CUDNN 7.6.5 For CUDA 9.0](https://developer.nvidia.com/rdp/cudnn-archive)
+- [CUDA (latest version) (current working one is 11.5)](https://developer.nvidia.com/cuda-downloads)
+- [CUDNN (latest version compatible with CUDA) (current working one is 8.3.2)](https://developer.nvidia.com/rdp/cudnn-download)
 - Python 3.9.7
-- Python 3.5.2 (Used for HentAI) <- Reworking to work with python 3.9
 
-If you have CUDA >=10 installed, install CUDA 9.0 and set the system variable "CUDA_PATH" to your CUDA 9.0 Path
+If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
 
 ## Install the requirements for each module
 
@@ -46,10 +45,9 @@ pip install -r requirements.txt
 cd tsuki
 cd modules
 cd HentAI
-virtualenv env --python=3.5.2
+virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
-Ignore any invaild syntax error
 
 ### ToneRemover
 ```bash
