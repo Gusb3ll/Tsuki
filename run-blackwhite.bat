@@ -27,7 +27,7 @@ move .\convert\output\*.png .\ToneRemover\input\
 echo y | del .\convert\input\*
 
 cd ToneRemover
-.\env\Scripts\python.exe .\main.py
+.\env\Scripts\python.exe .\toneremove.py
 
 cd ..
 
