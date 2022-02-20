@@ -1,7 +1,7 @@
 import cv2
 import torch
 import numpy as np
-import architecture
+from . import architecture
 
 # ESRGAN class allows abstraction of warmup and inference.
 class esrgan():
