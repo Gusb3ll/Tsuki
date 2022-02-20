@@ -1,0 +1,19 @@
+numpy==1.18.4
+scipy==1.4.0
+grpcio==1.36.1
+Pillow==7.2.0
+cython==0.29.28
+matplotlib==3.0.3
+scikit-image==0.15.0
+tensorflow-gpu==1.9
+keras==2.2.0
+opencv-python==4.4.0.42
+h5py==2.10.0
+imgaug==0.4.0
+IPython[all]
+pandas>=0.24.1
+# torch==0.4.1
+./torch-0.4.1-cp35-cp35m-win_amd64.whl
+torchvision>=0.2.1
+ffmpeg-python
+colorama
