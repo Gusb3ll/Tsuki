@@ -17,8 +17,6 @@
 
 If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
 
-## Install the requirements for each module
-
 ## Automatic installation
 
 ```bash
@@ -63,7 +61,7 @@ virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
 
-## Download the required models
+## Download the models
 
 ### DeepCreamPy
   - [Models.zip](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
@@ -78,7 +76,7 @@ pip install -r requirements.txt
 
 # Usage
 
-If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder that got created at the root
+If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at the root of the project
 
 ### For black & white manga
 Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
