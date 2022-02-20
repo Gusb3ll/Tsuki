@@ -15,8 +15,11 @@
 - [CUDNN](https://developer.nvidia.com/rdp/cudnn-download) (latest version compatible with CUDA) (current working one is 8.3.2)
 - Python 3.9.7
 
+#### Notes
+
 - If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
 - Make sure you install CUDNN with the zip not the exe
+- If you doesn't have GPU that can support CUDA you can run the script with CPU capable of running tensorflow as well
 
 ## Automatic installation
 
