@@ -1,19 +1,9 @@
 import cv2
 import numpy as np
-import os
-import glob
-from scipy.signal import argrelextrema
 from PIL import Image
+from scipy.signal import argrelextrema
 
-# Conversion from file based script to individual image usage
 def get_mosaic_res(root_img=None):
-    # assert root_img
-    #You can change those folder paths
-    # os.makedirs(root_img, exist_ok=True)
-
-    # files = glob.glob(rootdir + '/**/*.png', recursive=True)
-    # files_jpg = glob.glob(rootdir + '/**/*.jpg', recursive=True)
-    # files.extend(files_jpg)
     f = root_img # use input image path
     #-----------------------Logic-----------------------
     GBlur = 5
@@ -79,15 +69,9 @@ def get_mosaic_res(root_img=None):
     BigExtrema = [0,0,[0,0]]
     for i, _ in enumerate(Extremas):
         ExtremasSum.append(sum(Extremas[i][1]))
-        if BigExtrema[0] <= sum(Extremas[i][1])+int(sum(Extremas[i][1])*0.05):    #5% precedency for smaller resolution
+        if BigExtrema[0] <= sum(Extremas[i][1])+int(sum(Extremas[i][1])*0.05):
             BigExtrema = [sum(Extremas[i][1]),Extremas[i][0],Extremas[i][1]]    
-    MosaicResolutionOfImage = BigExtrema[1]+BigExtrema[2].index(max(BigExtrema[2]))    #Output
-    if MosaicResolutionOfImage == 0:    #If nothing found - set resolution as smallest
+    MosaicResolutionOfImage = BigExtrema[1]+BigExtrema[2].index(max(BigExtrema[2]))
+    if MosaicResolutionOfImage == 0:
         MosaicResolutionOfImage = HighRange+1
-    # print('Mosaic Resolution of "' + os.path.basename(f) + '" is: ' + str(MosaicResolutionOfImage))    #The Resolution of Mosaiced Image
     return MosaicResolutionOfImage
-    
-    #DEBUG Show image
-#    cv2.imshow('image',img_rgb)
-#    cv2.waitKey(0)
-#    cv2.destroyAllWindows()
