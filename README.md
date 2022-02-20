@@ -11,8 +11,8 @@
 ### System requirements
 
 - CUDA Compatible GPU
-- [CUDA (latest version) (current working one is 11.5)](https://developer.nvidia.com/cuda-downloads)
-- [CUDNN (latest version compatible with CUDA) (current working one is 8.3.2)](https://developer.nvidia.com/rdp/cudnn-download)
+- [CUDA](https://developer.nvidia.com/cuda-downloads) (latest version) (current working one is 11.5)
+- [CUDNN](https://developer.nvidia.com/rdp/cudnn-download) (latest version compatible with CUDA) (current working one is 8.3.2)
 - Python 3.9.7
 
 If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
