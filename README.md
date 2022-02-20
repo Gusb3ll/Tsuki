@@ -86,12 +86,16 @@ If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at th
 Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-blackwhite.bat
+
+# After HentAI UI popup select "bar" and press "go"
 ```
 
 ### For colored manga
 Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-color.bat
+
+# After HentAI UI popup select "bar" and press "go"
 ```
 
 # Demo
