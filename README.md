@@ -22,7 +22,7 @@ If you have CUDA >=10 installed, install CUDA 9.0 and set the system variable "C
 
 ### Converter
 ```bash
-cd tsukiuncen
+cd tsukiu
 cd modules
 cd convert
 virtualenv env --python=3.9.7
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 ### DeepCreamPy
 ```bash
-cd tsukiuncen
+cd tsuki
 cd modules
 cd DeepCreamPy
 virtualenv env --python=3.9.7
@@ -43,7 +43,7 @@ pip install -r requirements.txt
   - Download it [here](https://download.pytorch.org/whl/cpu/torch-0.4.1-cp35-cp35m-win_amd64.whl)
 #### after that run
 ```bash
-cd tsukiuncen
+cd tsuki
 cd modules
 cd HentAI
 virtualenv env --python=3.5.2
@@ -53,7 +53,7 @@ Ignore any invaild syntax error
 
 ### ToneRemover
 ```bash
-cd tsukiuncen
+cd tsuki
 cd modules
 cd ToneRemover
 virtualenv env --python=3.9.7
