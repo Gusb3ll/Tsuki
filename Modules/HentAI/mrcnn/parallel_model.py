@@ -14,10 +14,9 @@ https://github.com/fchollet/keras/blob/master/keras/utils/training_utils.py
 """
 
 import tensorflow as tf
-import keras.backend as K
 import keras.layers as KL
+import keras.backend as K
 import keras.models as KM
-
 
 class ParallelModel(KM.Model):
     """Subclasses the standard Keras Model and adds multi-GPU support.
@@ -57,9 +56,7 @@ class ParallelModel(KM.Model):
         """
         # Slice inputs. Slice inputs on the CPU to avoid sending a copy
         # of the full inputs to all GPUs. Saves on bandwidth and memory.
-        input_slices = {name: tf.split(x, self.gpu_count)
-                        for name, x in zip(self.inner_model.input_names,
-                                           self.inner_model.inputs)}
+        input_slices = {name: tf.split(x, self.gpu_count) for name, x in zip(self.inner_model.input_names, self.inner_model.inputs)}
 
         output_names = self.inner_model.output_names
         outputs_all = []
@@ -69,13 +66,12 @@ class ParallelModel(KM.Model):
         # Run the model call() on each GPU to place the ops there
         for i in range(self.gpu_count):
             with tf.device('/gpu:%d' % i):
-                with tf.name_scope('tower_%d' % i):
+                with tf.compat.v1.name_scope('tower_%d' % i):
                     # Run a slice of inputs through this replica
                     zipped_inputs = zip(self.inner_model.input_names,
                                         self.inner_model.inputs)
                     inputs = [
-                        KL.Lambda(lambda s: input_slices[name][i],
-                                  output_shape=lambda s: (None,) + s[1:])(tensor)
+                        KL.Lambda(lambda s: input_slices[name][i], output_shape=lambda s: (None,) + s[1:])(tensor)
                         for name, tensor in zipped_inputs]
                     # Create the model replica and get the outputs
                     outputs = self.inner_model(inputs)
@@ -129,13 +125,11 @@ if __name__ == "__main__":
         # Reset default graph. Keras leaves old ops in the graph,
         # which are ignored for execution but clutter graph
         # visualization in TensorBoard.
-        tf.reset_default_graph()
+        tf.compat.v1.reset_default_graph()
 
         inputs = KL.Input(shape=x_train.shape[1:], name="input_image")
-        x = KL.Conv2D(32, (3, 3), activation='relu', padding="same",
-                      name="conv1")(inputs)
-        x = KL.Conv2D(64, (3, 3), activation='relu', padding="same",
-                      name="conv2")(x)
+        x = KL.Conv2D(32, (3, 3), activation='relu', padding="same", name="conv1")(inputs)
+        x = KL.Conv2D(64, (3, 3), activation='relu', padding="same", name="conv2")(x)
         x = KL.MaxPooling2D(pool_size=(2, 2), name="pool1")(x)
         x = KL.Flatten(name="flat1")(x)
         x = KL.Dense(128, activation='relu', name="dense1")(x)
@@ -160,8 +154,7 @@ if __name__ == "__main__":
 
     optimizer = keras.optimizers.SGD(lr=0.01, momentum=0.9, clipnorm=5.0)
 
-    model.compile(loss='sparse_categorical_crossentropy',
-                  optimizer=optimizer, metrics=['accuracy'])
+    model.compile(loss='sparse_categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
     model.summary()
 
@@ -170,6 +163,5 @@ if __name__ == "__main__":
         datagen.flow(x_train, y_train, batch_size=64),
         steps_per_epoch=50, epochs=10, verbose=1,
         validation_data=(x_test, y_test),
-        callbacks=[keras.callbacks.TensorBoard(log_dir=MODEL_DIR,
-                                               write_graph=True)]
+        callbacks=[keras.callbacks.TensorBoard(log_dir=MODEL_DIR, write_graph=True)]
     )

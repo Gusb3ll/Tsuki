@@ -1,38 +1,34 @@
 import warnings
 
 warnings.filterwarnings('ignore')
+
 import os
 import sys
-import json
-import numpy as np
-import skimage.draw
-from skimage.filters import unsharp_mask
-import imgaug # should augment this improt as well haha
 import time
+import shutil
 import ffmpeg
 import colorama
-# Root directory of project
-ROOT_DIR = os.path.abspath("../../")
+import numpy as np
+import skimage.draw
+import ColabESRGAN.test
 
-# Import Mask RCNN and ESRGAN
-sys.path.append(ROOT_DIR)  # To find local version of the library
-sys.path.append(os.path.join(os.path.abspath('.'), 'ColabESRGAN/'))
 from mrcnn.config import Config
 from mrcnn import model as modellib, utils
-# It's too late to undo this now
-from cv2 import imshow, waitKey, multiply, add, erode, VideoCapture, Canny, cvtColor,COLOR_GRAY2RGB, imdecode, CAP_PROP_FRAME_COUNT, CAP_PROP_FRAME_HEIGHT, CAP_PROP_FRAME_WIDTH, CAP_PROP_FPS, VideoWriter, VideoWriter_fourcc, resize, INTER_LANCZOS4, INTER_AREA, GaussianBlur, filter2D, bilateralFilter, blur
-import ColabESRGAN.test
-# Adatptive mosaic granularity 
+
 from green_mask_project_mosaic_resolution import get_mosaic_res
+from cv2 import multiply, add, erode, VideoCapture, CAP_PROP_FRAME_COUNT, CAP_PROP_FRAME_HEIGHT, CAP_PROP_FRAME_WIDTH, CAP_PROP_FPS, VideoWriter, VideoWriter_fourcc, resize, INTER_AREA, GaussianBlur
+
+ROOT_DIR = os.path.abspath("../../")
+
+sys.path.append(ROOT_DIR) 
+sys.path.append(os.path.join(os.path.abspath('.'), 'ColabESRGAN/'))
 
 DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
-
-# Path to trained weights
 WEIGHTS_PATH = os.path.join(ROOT_DIR, "weights.h5")
 
 # taking this from hentai to avoid import
 class HentaiConfig(Config):
-    """Configuration for training on the toy  dataset.
+    """Configuration for training on the toy dataset.
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
@@ -115,9 +111,9 @@ class Detector():
                                         model_dir=DEFAULT_LOGS_DIR)
         try:
             self.model.load_weights(self.weights_path, by_name=True)
-            print("Weights loaded")
+            print(colorama.Fore.CYAN + "\nWeights loaded" + colorama.Fore.RESET)
         except Exception as e:
-            print(colorama.Fore.RED + "ERROR in load_weights: Model Load. Ensure you have your weights.h5 file!" + colorama.Fore.RESET, end=' ')
+            print(colorama.Fore.RED + "\nERROR in load_weights: Model Load. Ensure you have your weights.h5 file!" + colorama.Fore.RESET, end=' ')
             print(e)
 
     """Apply cover over image. Based off of Mask-RCNN Balloon color splash function
