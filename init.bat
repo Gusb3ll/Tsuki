@@ -11,7 +11,7 @@ mkdir .\modules\DeepCreamPy\decensor_input
 mkdir .\modules\DeepCreamPy\decensor_output
 
 mkdir .\modules\HentAI\input
-mkdir .\modules\HentAI\output\
+mkdir .\modules\HentAI\output
 mkdir .\modules\HentAI\output\decensor_input
 
 python -m pip install virtualenv
