@@ -1,10 +1,10 @@
 ![Tsuki](https://user-images.githubusercontent.com/77166960/154808873-1bdd3aab-1aa4-4fcd-a3e6-17dfcde3b720.png)
 
 
-### Manga uncensoring script based on
+### Manga/picture uncensoring script based on
 - [DeepCreamPy](https://github.com/liaoxiong3x/DeepCreamPy)
-- [HentAI](https://github.com/natethegreate/hent-AI)
-- [ToneRemover](https://github.com/natethegreate/Screentone-Remover) (For non-colored manga)
+- [Hent-AI](https://github.com/natethegreate/hent-AI)
+- [Screentone-Remover](https://github.com/natethegreate/Screentone-Remover) (For black & white manga/picture)
 
 ![Demo](https://cdn.discordapp.com/attachments/858334807561863221/944618448540033064/test-output.png)
 
@@ -84,16 +84,16 @@ pip install -r requirements.txt
 
 If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at the root of the project
 
-### For black & white manga
-Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
+### For black & white manga/picture
+Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-blackwhite.bat
 
 # After HentAI UI popup select "bar" and press "go"
 ```
 
-### For colored manga
-Put the manga images in "INPUT" folder (Both PNG & JPG are acceptable)
+### For colored manga/picture
+Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-color.bat
 
