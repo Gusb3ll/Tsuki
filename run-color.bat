@@ -19,7 +19,7 @@ move .\INPUT\* .\modules\convert\input\
 cd modules
 
 cd convert
-.\env\Scripts\python.exe .\JPG_to_PNG_converter.py
+.\env\Scripts\python.exe .\converter.py
 
 cd ..
 
@@ -31,7 +31,7 @@ cd HentAI
 
 cd ..
 
-move .\HentAI\output\decensor_input\*.png .\DeepCreamPy\decensor_input\
+move .\HentAI\output\*.png .\DeepCreamPy\decensor_input\
 echo y | del .\HentAI\input\*
 
 cd DeepCreamPy

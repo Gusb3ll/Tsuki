@@ -1,7 +1,3 @@
-import warnings
-
-warnings.filterwarnings('ignore')
-
 import os
 import sys
 import time
@@ -11,9 +7,10 @@ import colorama
 import numpy as np
 import skimage.draw
 import ColabESRGAN.test
+from cmyui import log, Ansi
 
 from mrcnn.config import Config
-from mrcnn import model as modellib, utils
+from mrcnn import model as modellib
 
 from green_mask_project_mosaic_resolution import get_mosaic_res
 from cv2 import multiply, add, erode, VideoCapture, CAP_PROP_FRAME_COUNT, CAP_PROP_FRAME_HEIGHT, CAP_PROP_FRAME_WIDTH, CAP_PROP_FPS, VideoWriter, VideoWriter_fourcc, resize, INTER_AREA, GaussianBlur
@@ -62,8 +59,7 @@ class Detector():
         # counts how many non-png images, if >1 then warn user
         self.dcp_compat = 0
         # Create model, but dont load weights yet
-        self.model = modellib.MaskRCNN(mode="inference", config=self.config,
-                                        model_dir=DEFAULT_LOGS_DIR)
+        self.model = modellib.MaskRCNN(mode="inference", config=self.config, model_dir=DEFAULT_LOGS_DIR)
         try:
             self.out_path = os.path.join(os.path.abspath('.'), "ESR_temp/ESR_out/")
             self.out_path2 = os.path.join(os.path.abspath('.'), "ESR_temp/ESR_out2/")
@@ -71,27 +67,26 @@ class Detector():
             self.temp_path2 = os.path.join(os.path.abspath('.'), "ESR_temp/temp2/")
             self.fin_path = os.path.join(os.path.abspath('.'), "ESR_output/")
         except:
-            print(colorama.Fore.RED + "ERROR in Detector init: Cannot find ESR_out or some dir within." + colorama.Fore.RESET)
+            log("ERROR in Detector init: Cannot find ESR_out or some dir within", Ansi.RED)
             return
         # Create esrgan instance for detector instance
         try:
             self.esr_model_path = os.path.join(os.path.abspath('.'), "4x_FatalPixels_340000_G.pth")
         except:
-            print(colorama.Fore.RED + "ERROR in Detector init: ESRGAN model not found, make sure you have 4x_FatalPixels_340000_G.pth in this directory" + colorama.Fore.RESET)
+            log("ERROR in Detector init: ESRGAN model not found, make sure you have 4x_FatalPixels_340000_G.pth in this directory", Ansi.RED)
             return
         # Scan for cuda compatible GPU for ESRGAN. Mask-RCNN *should* automatically use a GPU if available.
         self.hardware = 'cpu'
         if self.model.check_cuda_gpu()==True:
-            #NOTE: Edit this because I am having cuda errors :(
             # print("CUDA-compatible GPU located! ****DEBUG CPU MODE****")
-            print(colorama.Fore.GREEN + "CUDA-compatible GPU located!" + colorama.Fore.RESET)
+            log("CUDA-compatible GPU located!", Ansi.GREEN)
             self.hardware = 'cuda'
         # destroy model. Will re init during weight load.
         self.model = []
 
     # Clean out temp working images from all directories in ESR_temp. Code from https://stackoverflow.com/questions/185936/how-to-delete-the-contents-of-a-folder
     def clean_work_dirs(self):
-        print(colorama.Fore.CYAN + "Cleaning work dirs..." + colorama.Fore.RESET)
+        log("Cleaning work dirs...", Ansi.CYAN)
         folders = [self.out_path, self.out_path2, self.temp_path, self.temp_path2]
         for folder in folders:
             for filename in os.listdir(folder):
@@ -102,19 +97,18 @@ class Detector():
                     elif os.path.isdir(file_path):
                         shutil.rmtree(file_path)
                 except Exception as e:
-                    print(colorama.Fore.RED + 'ERROR in clean_work_dirs: Failed to delete %s. Reason: %s' % (file_path, e) + colorama.Fore.RESET)
+                    log('ERROR in clean_work_dirs: Failed to delete %s. Reason: %s' % (file_path, e), Ansi.RED)
 
     # Make sure this is called before using model weights
     def load_weights(self):
-        print(colorama.Fore.CYAN + 'Creating model, Loading weights...' + colorama.Fore.RESET, end='  ')
-        self.model = modellib.MaskRCNN(mode="inference", config=self.config,
-                                        model_dir=DEFAULT_LOGS_DIR)
+        log('Creating model, Loading weights...', Ansi.WHITE)
+        self.model = modellib.MaskRCNN(mode="inference", config=self.config, model_dir=DEFAULT_LOGS_DIR)
         try:
             self.model.load_weights(self.weights_path, by_name=True)
-            print(colorama.Fore.CYAN + "\nWeights loaded" + colorama.Fore.RESET)
+            log("Weights loaded", Ansi.GREEN)
         except Exception as e:
-            print(colorama.Fore.RED + "\nERROR in load_weights: Model Load. Ensure you have your weights.h5 file!" + colorama.Fore.RESET, end=' ')
-            print(e)
+            log("ERROR in load_weights: Model Load. Ensure you have your weights.h5 file!", Ansi.RED, end=' ')
+            log(e, Ansi.RED)
 
     """Apply cover over image. Based off of Mask-RCNN Balloon color splash function
     image: RGB image [height, width, 3]
@@ -190,8 +184,8 @@ class Detector():
                 if image.shape[-1] == 4:
                     image = image[..., :3] # strip alpha channel
             except Exception as e:
-                print(colorama.Fore.RED + "ERROR in resize_GAN: Image read. Skipping. image_path=" + colorama.Fore.RESET, img_path)
-                print(e)
+                log(f"ERROR in resize_GAN: Image read. Skipping. {img_path}", Ansi.RED)
+                log(e, Ansi.RED)
                 return
             # Calculate mosaic granularity.
             granularity = get_mosaic_res(np.array(image))
@@ -205,7 +199,7 @@ class Detector():
                 file_name = self.temp_path + img_name[:-4] + '.png' 
                 skimage.io.imsave(file_name, mini_img)
             except Exception as e:
-                print("ERROR in resize_GAN: resize. Skipping. image_path=",img_path, e)
+                log(f"ERROR in resize_GAN: Image read. Skipping. {img_path} {e}", Ansi.RED)
                 return
             # Now run ESRGAN inference
             gan_img_path = self.out_path + img_name[:-4] + '.png'
@@ -267,7 +261,7 @@ class Detector():
                 return
             # Run detection first
             r = self.model.detect([image], verbose=0)[0]  
-             # Remove bars from detection; class 1 
+            # Remove bars from detection; class 1 
             
             if len(r["scores"]) == 0:
                 print(colorama.Fore.RED + "Skipping image with no detection" + colorama.Fore.RESET)
@@ -379,7 +373,6 @@ class Detector():
         total_time = fin-star
         print("Completed ESRGAN detection and decensor in {:.4f} seconds".format(total_time))
         self.clean_work_dirs() #NOTE: DISABLE ME if you want to keep the images in the working dirs
-        #TODO: maybe unload hent-AI tf model here
 
     def video_create(self, image_path=None, dcp_path=''):
         assert image_path
@@ -402,9 +395,7 @@ class Detector():
 
         # Define codec and create video writer, video output is purely for debugging and educational purpose. Not used in decensoring.
         file_name = str(file)[:-4] + '_decensored.mp4'
-        vwriter = VideoWriter(file_name,
-                                    VideoWriter_fourcc(*'mp4v'),
-                                    fps, (width, height))
+        vwriter = VideoWriter(file_name, VideoWriter_fourcc(*'mp4v'), fps, (width, height))
         count = 0
         print("Beginning build. Do ensure only relevant images are in source directory")
         input_path = dcp_path + '/decensor_output/'
@@ -450,9 +441,7 @@ class Detector():
     
             # Define codec and create video writer, video output is purely for debugging and educational purpose. Not used in decensoring.
             file_name = fname + "_with_censor_masks.mp4"
-            vwriter = VideoWriter(file_name,
-                                      VideoWriter_fourcc(*'mp4v'),
-                                      fps, (width, height))
+            vwriter = VideoWriter(file_name, VideoWriter_fourcc(*'mp4v'), fps, (width, height))
             count = 0
             success = True
             print("Video read complete, starting video detection:")
@@ -501,8 +490,8 @@ class Detector():
                 if image.shape[-1] == 4:
                     image = image[..., :3] # strip alpha channel
             except Exception as e:
-                print(colorama.Fore.RED + "ERROR in detect_and_cover: Image read. Skipping. image_path=" + colorama.Fore.RESET, image_path)
-                print(e)
+                log(f"ERROR in detect_and_cover: Image read. Skipping. {image_path}", Ansi.RED)
+                log(e)
                 return
             # Detect objects
             '''
@@ -533,7 +522,7 @@ class Detector():
                 file_name = save_path + fname[:-4] + '.png'
                 skimage.io.imsave(file_name, cov)
             except:
-                print(colorama.Fore.RED + "ERROR in detect_and_cover: Image write. Skipping. image_path=" + colorama.Fore.RESET, image_path)
+                log(f"ERROR in detect_and_cover: Image write. Skipping. {image_path}", Ansi.RED)
             # print("Saved to ", file_name)
 
     # Function for file parsing, calls the aboven detect_and_cover
@@ -546,7 +535,7 @@ class Detector():
         if dilation < 0:
             print("ERROR: dilation value < 0")
             return
-        print(colorama.Fore.CYAN + "Will expand each mask by {} pixels".format(dilation/2) + colorama.Fore.RESET)
+        log("Will expand each mask by {} pixels".format(dilation/2), Ansi.WHITE)
 
         file_counter = 0
         if(is_video == True):
@@ -578,7 +567,7 @@ class Detector():
             
 
             # save run detection with outputs to output folder
-            print(colorama.Fore.WHITE + "--------------------------------------------------------------------------" + colorama.Fore.RESET)
+            log("--------------------------------------------------------------------------", Ansi.GRAY)
             for img_path, img_name in img_list:
                 star = time.perf_counter()
                 self.detect_and_cover(img_path, img_name, output_folder, is_mosaic=is_mosaic, dilation=dilation)  #sending force_jpg for debugging
@@ -586,13 +575,13 @@ class Detector():
                 total_time = fin-star
                 print(colorama.Fore.CYAN + 'Detection on image' + colorama.Fore.RESET, file_counter,'of', len(img_list), 'finished in ' + colorama.Fore.YELLOW + '{:.4f}'.format(total_time) + colorama.Fore.RESET + ' seconds')
                 file_counter += 1
-            print(colorama.Fore.WHITE + "--------------------------------------------------------------------------" + colorama.Fore.RESET)
+            log("--------------------------------------------------------------------------", Ansi.GRAY)
 
     # Unloads both models if possible, to allow hent-AI to remain open while DCP runs.
     def unload_model(self):
         del self.esrgan_instance
         self.model.unload_model()
-        print(colorama.Fore.GREEN + 'Model unload successful!' + colorama.Fore.RESET)
+        log('Model unload successful!', Ansi.GREEN)
 
 # main only used for debugging here. Comment out pls
 '''if __name__ == '__main__':

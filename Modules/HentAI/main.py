@@ -1,21 +1,27 @@
-# Feb 2020 - Nathan Cueto
-# Main function for UI and uses Detector class
+"""
+Feb 2020 - Nathan Cueto
+Main function for UI and uses Detector class
+"""
+
 import warnings
 warnings.filterwarnings('ignore')
 
-import sys
 import os
-from os import listdir, system
-from tkinter import *
-import subprocess
-from tkinter import filedialog
-import configparser
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+import sys
 import shutil
-from detector import Detector
 import colorama
+import subprocess
+import configparser
+from os import listdir
+from tkinter import *
+from tkinter import filedialog
+from detector import Detector
 
+from cmyui import log, Ansi
 
-versionNumber = '1.6.9'
+versionNumber = '1.6.9 - Tsuki'
 weights_path = 'weights.h5' # should call it weights.h5 in main dir
 cfg_path = 'hconfig.ini'
 
@@ -30,7 +36,7 @@ counter = 0
 
 colorama.init()
 
-print(colorama.Fore.CYAN + '----- HentAI modified by Gusbell -----' + colorama.Fore.RESET)
+log('----- HentAI modified by Gusbell -----', Ansi.CYAN)
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -95,11 +101,6 @@ def hentAI_video_create(video_path=None, dcp_dir=None):
     okbutton.pack()
     popup.mainloop()
 def hentAI_detection(dcp_dir=None, in_path=None, is_mosaic=False, is_video=False, force_jpg=False, dilation=0):
-    # TODO: Create new window? Can show loading bar
-    # hent_win = new_window()
-    # info_label = Label(hent_win, text="Beginning detection")
-    # info_label.pack(padx=10,pady=10)
-    # hent_win.mainloop()
 
     if dcp_dir==None:
         error(5)
@@ -114,7 +115,7 @@ def hentAI_detection(dcp_dir=None, in_path=None, is_mosaic=False, is_video=False
         hconfig['USER']['srcdir'] = in_path
         hconfig['USER']['gmask'] = str(dilation)
     else:
-        print(colorama.Fore.RED + "ERROR in hentAI_detection: Unable to read config file" + colorama.Fore.RESET)
+        log("ERROR in hentAI_detection: Unable to read config file", Ansi.RED)
     with open(cfg_path, 'w') as cfgfile:
         hconfig.write(cfgfile)
 
@@ -122,39 +123,39 @@ def hentAI_detection(dcp_dir=None, in_path=None, is_mosaic=False, is_video=False
           
     if(is_mosaic == True and is_video==False):
         # Copy input folder to decensor_input_original. NAMES MUST MATCH for DCP
-        print(colorama.Fore.CYAN + 'copying inputs into input_original dcp folder' + colorama.Fore.RESET)
+        log('Copying inputs into input_original dcp folder', Ansi.CYAN)
         for fil in listdir(in_path):
             if fil.endswith('jpg') or fil.endswith('png') or fil.endswith('jpeg') or fil.endswith('JPG') or fil.endswith('PNG') or fil.endswith('JPEG'):
                 try:
                     shutil.copy(in_path + '/' + fil, dcp_dir + '/decensor_input_original/' + fil) # DCP is compatible with original jpg input.
                 except Exception as e:
-                    print(colorama.Fore.RED + "ERROR in hentAI_detection: Mosaic copy to decensor_input_original failed!" + colorama.Fore.RESET, fil, e)
+                    log("ERROR in hentAI_detection: Mosaic copy to decensor_input_original failed!", Ansi.RED, fil, e)
                     return
 
     # Run detection
     if(is_video==True):
-        print(colorama.Fore.CYAN + '----- Running video detection -----' + colorama.Fore.RESET)
+        log('----- Running video detection -----', Ansi.CYAN)
         loader = Tk()
         loader.title('Running detections')
         load_label = Label(loader, text='Now running detections. This can take around a minute or so per image. Please wait')
         load_label.pack(side=TOP, fill=X, pady=10, padx=20)
         loader.update()
-        detect_instance.run_on_folder(input_folder=in_path, output_folder=dcp_dir+'/decensor_input/', is_video=True, orig_video_folder=dcp_dir + '/decensor_input_original/', dilation=dilation) #no jpg for video detect
+        detect_instance.run_on_folder(input_folder=in_path, output_folder=dcp_dir + '/', is_video=True, orig_video_folder=dcp_dir + '/', dilation=dilation) #no jpg for video detect
         loader.destroy()
     else:
-        print(colorama.Fore.CYAN + '----- Running detection -----' + colorama.Fore.RESET)
+        log('----- Running detection -----', Ansi.CYAN)
         loader = Tk()
         loader.title('Running detections')
         load_label = Label(loader, text='Now running detections. This can take around a minute or so per image. Please wait')
         load_label.pack(side=TOP, fill=X, pady=10, padx=20)
         loader.update()
-        detect_instance.run_on_folder(input_folder=in_path, output_folder=dcp_dir+'/decensor_input/', is_video=False, is_mosaic=is_mosaic, dilation=dilation)
+        detect_instance.run_on_folder(input_folder=in_path, output_folder=dcp_dir + '/', is_video=False, is_mosaic=is_mosaic, dilation=dilation)
         loader.destroy()
 
 
     # Announce completion, TODO: offer to run DCP from DCP directory
     detect_instance.unload_model()
-    print(colorama.Fore.GREEN + '----- Process complete, please close HentAI UI to continue -----' + colorama.Fore.RESET)
+    log('Process complete, please close HentAI UI to continue', Ansi.GREEN)
     popup = Tk()
     popup.title('Success!')
     label = Label(popup, text='Process executed successfully! Now you can run DeepCreamPy.')
@@ -176,7 +177,7 @@ def hentAI_TGAN(in_path=None, is_video=False, force_jpg=True):
     if 'USER' in hconfig:
         hconfig['USER']['srcdir'] = in_path
     else:
-        print(colorama.Fore.RED + "ERROR in hentAI_detection: Unable to read config file" + colorama.Fore.RESET)
+        log("ERROR in hentAI_detection: Unable to read config file", Ansi.RED)
     with open(cfg_path, 'w') as cfgfile:
         hconfig.write(cfgfile)
     loader = Tk()
@@ -187,7 +188,7 @@ def hentAI_TGAN(in_path=None, is_video=False, force_jpg=True):
     detect_instance.run_ESRGAN(in_path = in_path, is_video = is_video, force_jpg = force_jpg)
     loader.destroy()
 
-    print(colorama.Fore.GREEN + '----- Process complete, please close HentAI UI to continue -----' + colorama.Fore.RESET)
+    log('Process complete, please close HentAI UI to continue', Ansi.GREEN)
     popup = Tk()
     popup.title('Success!')
     label = Label(popup, text='Process executed successfully!')
@@ -211,7 +212,7 @@ def get_cfg():
         otext = hconfig['USER']['srcdir']
         mtext = hconfig['USER']['gmask']
     else:
-        print(colorama.Fore.RED + "ERROR in get_cfg: Unable to read USER section" + colorama.Fore.RESET)
+        log("ERROR in get_cfg: Unable to read USER section", Ansi.RED)
     
     dvar.set(dtext)
     ovar.set(otext)

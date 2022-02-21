@@ -1,12 +1,12 @@
 import numpy as np
 from PIL import Image, ImageDraw
 
-#convert PIL image to numpy array
+# Convert PIL image to numpy array
 def image_to_array(image):
     array = np.asarray(image)
     return np.array(array / 255.0)
 
-#find strongly connected components with the mask color
+# Find strongly connected components with the mask color
 def find_regions(image, mask_color):
     pixel = image.load()
     neighbors = dict()
@@ -40,9 +40,9 @@ def find_regions(image, mask_color):
     regions.sort(key = len, reverse = True)
     return regions
 
-# risk of box being bigger than the image
+# Risk of box being bigger than the image
 def expand_bounding(img, region, expand_factor=1.5, min_size = 256):
-    #expand bounding box to capture more context
+    # Expand bounding box to capture more context
     x, y = zip(*region)
     min_x, min_y, max_x, max_y = min(x), min(y), max(x), max(y)
     width, height = img.size
@@ -67,9 +67,9 @@ def expand_bounding(img, region, expand_factor=1.5, min_size = 256):
     y1_square = y1
     x2_square = x2
     y2_square = y2
-    #move bounding boxes that are partially outside of the image inside the image
+    # Move bounding boxes that are partially outside of the image inside the image
     if (y1_square < 0 or y2_square > (height - 1)) and (x1_square < 0 or x2_square > (width - 1)):
-        #conservative square region
+        # Conservative square region
         if x1_square < 0 and y1_square < 0:
             x1_square = 0
             y1_square = 0
@@ -112,12 +112,8 @@ def expand_bounding(img, region, expand_factor=1.5, min_size = 256):
             difference = y2_square - height + 1
             y1_square -= difference
             y2_square -= difference
-    # if y1_square < 0 or y2_square > (height - 1):
-
-    #if bounding box goes outside of the image for some reason, set bounds to original, unexpanded values
-    #print(width, height)
     if x2_square > width or y2_square > height:
-        print("bounding box out of bounds!")
+        print("Bounding box out of bounds")
         print(x1_square, y1_square, x2_square, y2_square)
         x1_square, y1_square, x2_square, y2_square = min_x, min_y, max_x, max_y
     return x1_square, y1_square, x2_square, y2_square

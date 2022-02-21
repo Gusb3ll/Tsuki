@@ -1,6 +1,5 @@
 import os
 
-
 def check_file(input_dir, output_dir, Release_version=True):
     file_list = []
     output_file_list = []
