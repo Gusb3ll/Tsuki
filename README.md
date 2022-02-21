@@ -39,6 +39,7 @@ cd convert
 virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
+after that create "input" and "output" folder in Converter folder
 
 ### DeepCreamPy
 ```bash
@@ -48,6 +49,7 @@ cd DeepCreamPy
 virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
+after that create "decensor_input" and "decensor_output" folder in DeepCreamPy folder
 
 ### HentAI
 ```bash
@@ -57,6 +59,7 @@ cd HentAI
 virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
+after that create "input" and "output" folder in HentAI folder
 
 ### ToneRemover
 ```bash
@@ -66,6 +69,7 @@ cd ToneRemover
 virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
+after that create "input" and "output" folder in the ToneRemover folder
 
 ## Download the models
 
@@ -80,7 +84,7 @@ pip install -r requirements.txt
   - [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) 
     - Put this in HentAI/ColabESRGAN/models folder
 
-# Usage
+# Usage (Automatic)
 
 If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at the root of the project
 
@@ -99,3 +103,8 @@ Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 
 # After HentAI UI popup select "bar" and press "go"
 ```
+
+# Usage (Manual)
+
+### Make sure you are using the correct environment when using each modules
+WIP
