@@ -2484,7 +2484,11 @@ class MaskRCNN():
                 backbone_shapes,
                 self.config.BACKBONE_STRIDES,
                 self.config.RPN_ANCHOR_STRIDE)
+            # Keep a copy of the latest anchors in pixel coordinates because
+            # it's used in inspect_model notebooks.
+            # TODO: Remove this after the notebook are refactored to not use it
             self.anchors = a
+            # Normalize coordinates
             self._anchor_cache[tuple(image_shape)] = utils.norm_boxes(a, image_shape[:2])
         return self._anchor_cache[tuple(image_shape)]
 
@@ -2493,7 +2497,7 @@ class MaskRCNN():
         tensor: TensorFlow symbolic tensor.
         name: Name of ancestor tensor to find
         checked: For internal use. A list of tensors that were already
-        searched to avoid loops in traversing the graph.
+                 searched to avoid loops in traversing the graph.
         """
         checked = checked if checked is not None else []
         # Put a limit on how deep we go to avoid very long loops
