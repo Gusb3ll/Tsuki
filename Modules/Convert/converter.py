@@ -14,7 +14,7 @@ except FileExistsError:
 
 for filename in os.listdir(input_path):
     current_img = Image.open(input_path + '\\' + filename)
-    log("--------------------------------------------------------------------------", Ansi.GRAY)
+    log("", Ansi.GRAY)
     log('Working on image: ' + os.path.splitext(filename)[0], Ansi.CYAN)
     log(f'Format: {current_img.format}, Size: {current_img.size}, Mode: {current_img.mode}', Ansi.WHITE)
     current_img.save('.\\' + output_path + '\\' +

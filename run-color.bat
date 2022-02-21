@@ -42,3 +42,15 @@ cd ..
 
 move .\modules\DeepCreamPy\decensor_output\*.png .\OUTPUT
 echo y | del .\modules\DeepCreamPy\decensor_input\*
+
+echo.
+echo.
+echo.
+echo.
+echo.
+echo DECENSORING COMPETED, ENJOY!
+echo.
+echo.
+echo.
+echo.
+echo.
