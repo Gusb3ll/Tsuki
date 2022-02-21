@@ -19,7 +19,7 @@
 
 #### Notes
 
-- If you have others CUDA versions installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
+- If you have others CUDA version installed, make sure you set the system variable "CUDA_PATH" to your latest CUDA path
 - Make sure you install CUDNN with the zip not the exe
 - If you doesn't have GPU that can support CUDA you can run the script with CPU capable of running tensorflow as well
 
