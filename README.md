@@ -107,4 +107,6 @@ Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 # Usage (Manual)
 
 ### Make sure you are using the correct environment when using each modules
-WIP
+1. Activate HentAI environment then put the image in the "png" format into the "input" folder you just created
+2. Move the result from "output" folder from HentAI to "decensor_input" in DeepCreamPy folder
+3. Run DeepCreamPy and done! you have your uncensored image
