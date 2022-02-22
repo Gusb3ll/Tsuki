@@ -231,8 +231,8 @@ def hentAI_detection(dcp_dir=None, in_path=None, is_mosaic=False, is_video=False
 #     ovar.set(otext)
 
 def bar_detect():
-    d_entry = '.\output'
-    o_entry = '.\input'
+    d_entry = 'output'
+    o_entry = 'input'
     dil_entry = 3
     hentAI_detection(dcp_dir=d_entry, in_path=o_entry, is_mosaic=False, is_video=False, force_jpg=True, dilation=int(dil_entry))
     # bar_win = new_window()
