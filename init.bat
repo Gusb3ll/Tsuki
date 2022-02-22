@@ -18,24 +18,6 @@ python -m pip install virtualenv
 
 cd modules 
 
-cd Convert
 virtualenv env --python=3.9.7
 .\env\Scripts\python.exe .\env\Scripts\pip.exe install -r ./requirements.txt
 
-cd ..
-
-cd DeepCreamPy
-virtualenv env --python=3.9.7
-.\env\Scripts\python.exe .\env\Scripts\pip.exe install -r ./requirements.txt
-
-cd ..
-
-cd HentAI
-virtualenv env --python=3.9.7
-.\env\Scripts\python.exe .\env\Scripts\pip.exe install -r ./requirements.txt
-
-cd ..
-
-cd ToneRemover
-virtualenv env --python=3.9.7
-.\env\Scripts\python.exe .\env\Scripts\pip.exe install -r ./requirements.txt

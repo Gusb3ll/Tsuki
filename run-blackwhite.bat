@@ -18,8 +18,10 @@ move .\INPUT\* .\modules\convert\input\
 
 cd modules
 
+CALL .\env\Scripts\activate.bat
+
 cd convert
-.\env\Scripts\python.exe .\converter.py
+python .\converter.py
 
 cd ..
 
@@ -27,7 +29,7 @@ move .\convert\output\*.png .\ToneRemover\input\
 echo y | del .\convert\input\*
 
 cd ToneRemover
-.\env\Scripts\python.exe .\toneremove.py
+python .\toneremove.py
 
 cd ..
 
@@ -35,7 +37,7 @@ move .\ToneRemover\output\*.png .\HentAI\input\
 echo y | del .\ToneRemover\input\*
 
 cd HentAI
-.\env\Scripts\python.exe .\main.py
+python .\main.py
 
 cd ..
 
@@ -43,7 +45,7 @@ move .\HentAI\output\*.png .\DeepCreamPy\decensor_input\
 echo y | del .\HentAI\input\*
 
 cd DeepCreamPy
-.\env\Scripts\python.exe .\decensor.py
+python .\decensor.py
 
 cd ..
 cd ..
