@@ -582,32 +582,3 @@ class Detector():
         del self.esrgan_instance
         self.model.unload_model()
         log('Model unload successful!', Ansi.GREEN)
-
-# main only used for debugging here. Comment out pls
-'''if __name__ == '__main__':
-    import argparse
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(
-        description='Utilize Mask R-CNN to detect censor bars.')
-    parser.add_argument('--weights', required=True,
-                        metavar="/path/to/weights.h5",
-                        help="Path to weights.h5")
-    parser.add_argument('--imagedir', required=True,
-                        metavar="path to image folder",
-                        help='Folder of images to apply mask coverage on')
-    # parser.add_argument('--video', required=False,
-    #                     metavar="path or URL to video",
-    #                     help='Video to apply effect on')
-    args = parser.parse_args()
-    weights_path = args.weights
-    images_path = args.imagedir
-    output_dir = "temp_out/"
-    print('Initializing Detector class')
-    detect_instance = Detector(weights_path=args.weights)
-    print('loading weights')
-    detect_instance.load_weights()
-    print('running ESRGAN on in and out folder')
-    # detect_instance.run_on_folder(input_folder=images_path, output_folder=output_dir)
-    detect_instance.run_TGAN(in_path=images_path)
-    print("Fin")'''
-    
