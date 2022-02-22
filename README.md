@@ -33,45 +33,20 @@
 
 ## Manual installation (Not recommended)
 
-### Converter
 ```bash
 cd tsuki
 cd modules
-cd convert
 virtualenv env --python=3.9.7
 pip install -r requirements.txt
 ```
-after that create "input" and "output" folder in Converter folder
 
-### DeepCreamPy
-```bash
-cd tsuki
-cd modules
-cd DeepCreamPy
-virtualenv env --python=3.9.7
-pip install -r requirements.txt
-```
-after that create "decensor_input" and "decensor_output" folder in DeepCreamPy folder
+- Create "input" and "output" folder in Converter folder
 
-### HentAI
-```bash
-cd tsuki
-cd modules
-cd HentAI
-virtualenv env --python=3.9.7
-pip install -r requirements.txt
-```
-after that create "input" and "output" folder in HentAI folder
+- Ceate "decensor_input" and "decensor_output" folder in DeepCreamPy folder
 
-### ToneRemover
-```bash
-cd tsuki
-cd modules
-cd ToneRemover
-virtualenv env --python=3.9.7
-pip install -r requirements.txt
-```
-after that create "input" and "output" folder in the ToneRemover folder
+- Create "input" and "output" folder in HentAI folder
+
+- Create "input" and "output" folder in the ToneRemover folder
 
 ## Download the models
 
