@@ -10,6 +10,10 @@
 
 ### Right now the program only works with bar censoring, mosaic and video uncensoring will be implemented later
 
+# Google colab version
+
+### If you want to use the google colab version, make a copy of [this](https://colab.research.google.com/drive/1KYfZBlbzRMQmfoqCrDCB2z11ebU1FbRI?usp=sharing) in your own google drive and download the models from the section below
+
 # Installiation
 
 ### System requirements
@@ -69,16 +73,12 @@ If you ran "init.bat" already, there should be "INPUT" and "OUTPUT" folder at th
 Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-blackwhite.bat
-
-# After HentAI UI popup select "bar" and press "go"
 ```
 
 ### For colored manga/picture
 Put the images in "INPUT" folder (Both PNG & JPG are acceptable)
 ```
 .\run-color.bat
-
-# After HentAI UI popup select "bar" and press "go"
 ```
 
 # Usage (Manual)
