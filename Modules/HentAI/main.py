@@ -155,7 +155,7 @@ def hentAI_detection(dcp_dir=None, in_path=None, is_mosaic=False, is_video=False
 
 
     detect_instance.unload_model()
-    log('Process complete, please close HentAI UI to continue', Ansi.GREEN)
+    log('Process complete', Ansi.GREEN)
     # popup = Tk()
     # popup.title('Success!')
     # label = Label(popup, text='Process executed successfully! Now you can run DeepCreamPy.')
