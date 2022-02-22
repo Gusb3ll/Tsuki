@@ -8,6 +8,8 @@
 
 ![Demo](https://cdn.discordapp.com/attachments/858334807561863221/944618448540033064/test-output.png)
 
+### Right now the program only works with bar censoring, mosaic and video uncensoring will be implemented later
+
 # Installiation
 
 ### System requirements
