@@ -10,7 +10,6 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import sys
-import colorama
 import configparser
 from detector import Detector
 
@@ -19,8 +18,6 @@ from cmyui import log, Ansi
 versionNumber = '1.6.9 - Tsuki'
 weights_path = 'weights.h5'
 cfg_path = 'hconfig.ini'
-
-colorama.init()
 
 log('----- HentAI modified by Gusbell -----', Ansi.CYAN)
 

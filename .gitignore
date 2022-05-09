@@ -1,2 +1,7 @@
-INPUT/*
-OUTPUT/*
+src/data/input/*
+src/data/output/*
+src/data/models/*
+
+!.gitkeep
+
+lib/__pycache__/*
