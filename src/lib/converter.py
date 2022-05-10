@@ -1,8 +1,6 @@
 import os
 from PIL import Image
 
-
-
 class Converter:
 
   def __init__(self):

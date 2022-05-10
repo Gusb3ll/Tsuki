@@ -5,3 +5,7 @@ src/data/models/*
 !.gitkeep
 
 lib/__pycache__/*
+
+.dockerignore
+*.yml
+Dockerfile
