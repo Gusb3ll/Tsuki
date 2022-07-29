@@ -12,7 +12,7 @@
 
 # Google colab version
 
-### If you want to use the google colab version, make a copy of [this](https://colab.research.google.com/drive/1KYfZBlbzRMQmfoqCrDCB2z11ebU1FbRI?usp=sharing) in your own google drive and download the models from the section below
+### If you want to use the google colab version, make a copy of [this](https://github.com/Gusb3ll/Tsuki/blob/main/Tsuki_colab.ipynb) in your own google drive and download the models from the section below
 
 # Installiation
 
