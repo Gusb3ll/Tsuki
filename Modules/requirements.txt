@@ -13,5 +13,5 @@ tzdata==2021.5
 scipy==1.7.1
 Pillow==9.0.1
 tf-slim==1.1.0
-protobuf==3.20.0
+protobuf==3.20.2
 hentai
