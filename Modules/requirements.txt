@@ -7,7 +7,7 @@ scikit-image==0.19.2
 ffmpeg==1.4
 colorama==0.4.4
 matplotlib==3.5.1
-IPython==8.0.1
+IPython==8.10.0
 cmyui==1.9.3
 tzdata==2021.5
 scipy==1.7.1
