@@ -11,7 +11,7 @@ IPython==8.10.0
 cmyui==1.9.3
 tzdata==2021.5
 scipy==1.10.0
-Pillow==9.3.0
+Pillow==10.0.1
 tf-slim==1.1.0
 protobuf==3.20.2
 hentai
