@@ -55,11 +55,11 @@ pip install -r requirements.txt
 ## Download the models
 
 ### DeepCreamPy
-  - [Models.zip](https://drive.google.com/file/d/1ZJ5x-lVnouTv-OL8jp_ClDD1A7QgDwoa/view?usp=sharing)
+  - [Models.zip](https://drive.google.com/open?id=1byrmn6wp0r27lSXcT9MC4j-RQ2R04P1Z)
     - Extract the file then put it in DeepCreamPy/models folder
 
 ### HentAI
-  - [4x_FatalPixels_340000_G.pth](https://de-next.owncube.com/index.php/s/mDGmi7NgdyyQRXL)
+  - [4x_FatalPixels_340000_G.pth](https://github.com/KutsuyaYuki/hent-ai/blob/master/4x_FatalPixels_340000_G.pth)
   - [Weights.h5](https://www.dropbox.com/s/zvf6vbx3hnm9r31/weights268.zip?dl=0)
     - Put these two files in HentAI folder
   - [RRDB](https://drive.google.com/file/d/1pJ_T-V1dpb1ewoEra1TGSWl5e6H7M4NN/view) 
